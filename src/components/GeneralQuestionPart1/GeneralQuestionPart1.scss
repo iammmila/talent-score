@@ -1,3 +1,52 @@
 .general-questions {
-  
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  .fullname {
+    display: flex;
+    gap: 20px;
+
+    .name,
+    .surname {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      label {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+      }
+      input {
+        width: 235px;
+        height: 36px;
+        padding: 8px;
+        border-radius: 25px;
+        background-color: #f2f6f6;
+        border: 1px solid #f2f6f6;
+        outline: none;
+        &:hover {
+          outline: gray;
+          border: 1px solid #dbdbdb;
+        }
+      }
+    }
+  }
+  .employment,
+  .education,
+  .degree {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+.css-13cymwt-control,
+.css-t3ipsp-control {
+  background-color: #f2f6f6 !important;
+  border-color: #f2f6f6 !important;
+  border-radius: 25px !important;
+  outline: none !important;
+}
+.css-t3ipsp-control {
+  border-color: #038477 !important;
+  box-shadow: 0 0 0 1px #038477 !important;
 }
