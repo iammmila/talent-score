@@ -1,0 +1,22 @@
+.sections {
+  position: absolute;
+  top: 110px;
+  left: -170px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: left;
+  z-index: 9;
+  div {
+    padding: 10px 40px;
+    background-color: #f4f4f4;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .active {
+    background-color: #103557;
+    color: white;
+  }
+}
