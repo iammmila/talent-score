@@ -1,0 +1,34 @@
+.olympics-question-part3 {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  .winner {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .question {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      div {
+        display: flex;
+        padding: 10px 15px 10px 70px;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 30px;
+        border-radius: 25px;
+        background-color: #f2f6f6;
+        input[type="radio"] {
+          border-color: 1px solid #d9d9d9;
+          outline: none;
+          &:focus-within {
+            background-color: red !important;
+            border-color: Red !important;
+          }
+        }
+      }
+    }
+  }
+}
