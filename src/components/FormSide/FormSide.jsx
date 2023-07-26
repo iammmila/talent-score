@@ -5,8 +5,7 @@ import Sections from "../Sections/Sections";
 import ProgressBar from "@ramonak/react-progress-bar";
 import ButtonNext from "./../Buttons/ButtonNext/ButtonNext";
 import ButtonPrevious from "./../Buttons/ButtonPrevious/ButtonPrevious";
-// import EducationQuestionPart2 from "./../EducationQuestionPart2/EducationQuestionPart2";
-import GeneralQuestionPart1 from "./../GeneralQuestionPart1/GeneralQuestionPart1";
+import EducationQuestionPart2 from "./../EducationQuestionPart2/EducationQuestionPart2";
 
 const FormSide = () => {
   return (
@@ -21,7 +20,7 @@ const FormSide = () => {
           animateOnRender={true}
           isLabelVisible={false}
         />
-        <GeneralQuestionPart1 />{" "}
+        <EducationQuestionPart2 />
       </div>
       <div className="buttons">
         <ButtonPrevious />

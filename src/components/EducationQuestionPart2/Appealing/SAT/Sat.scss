@@ -1,0 +1,19 @@
+.sat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  input {
+    padding: 8px;
+    border-radius: 25px;
+    background-color: #f2f6f6;
+    border: 1px solid #f2f6f6;
+    outline: none;
+    &:hover {
+      border: 1px solid #dbdbdb;
+    }
+  }
+}

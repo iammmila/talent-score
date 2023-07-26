@@ -1,0 +1,37 @@
+.local-exam {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  span {
+    font-weight: 500;
+    font-size: 16px;
+  }
+  div {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    .test-name,
+    .score,
+    .max-score {
+      padding: 8px;
+      border-radius: 25px;
+      background-color: #f2f6f6;
+      border: 1px solid #f2f6f6;
+      color: black;
+      outline: none;
+      &:hover {
+        border: 1px solid #dbdbdb;
+      }
+      &::placeholder {
+        color: #adadad;
+      }
+    }
+    .test-name {
+      width: 222px;
+    }
+    .score,
+    .max-score {
+      width: 110px;
+    }
+  }
+}

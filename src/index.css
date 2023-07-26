@@ -9,3 +9,32 @@ body {
   accent-color: #038477;
   font-size: 14px;
 }
+.css-13cymwt-control,
+.css-t3ipsp-control {
+  background-color: #f2f6f6 !important;
+  border-color: #f2f6f6 !important;
+  border-radius: 25px !important;
+  outline: none !important;
+}
+.css-t3ipsp-control {
+  border-color: #038477 !important;
+  box-shadow: 0 0 0 1px #038477 !important;
+}
+.css-1nmdiq5-menu {
+  background-color: #f2f6f6 !important;
+}
+/* line of select */
+.css-1u9des2-indicatorSeparator {
+  width: 0 !important;
+}
+/* arrow of select */
+.css-1xc3v61-indicatorContainer {
+  color: #038477 !important;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+input::placeholder {
+  color: #adadad;
+}

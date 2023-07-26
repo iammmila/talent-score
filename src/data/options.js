@@ -19,4 +19,34 @@ const thirdSelection = [
   { value: "Zərbəçi", label: "Zərbəçi" },
   { value: "Heç biri", label: "Heç biri" },
 ];
-export { firstSelection, secondSelection, thirdSelection };
+const countries = [
+  { value: "azerbaijan", label: "Azərbaycan" },
+  { value: "turkey", label: "turkiye" },
+  { value: "polsa", label: "polsa" },
+  { value: "qazaxxstan", label: "qazaxistan" },
+];
+const cities = [
+  { value: "azerbaijan", label: "Azərbaycan" },
+  { value: "turkey", label: "turkiye" },
+  { value: "polsa", label: "polsa" },
+  { value: "qazaxxstan", label: "qazaxistan" },
+];
+const appealing = [
+  {
+    value: "Atestat - GPA",
+    label: "Atestat - GPA",
+  },
+  {
+    value: "Languages test (IELTS, TOEFL)",
+    label: "Languages test (IELTS, TOEFL)",
+  },
+  { value: "SAT", label: "SAT" },
+];
+export {
+  firstSelection,
+  secondSelection,
+  thirdSelection,
+  countries,
+  cities,
+  appealing,
+};
