@@ -33,14 +33,31 @@ const cities = [
 ];
 const appealing = [
   {
-    value: "Atestat - GPA",
+    value: "Atestat",
     label: "Atestat - GPA",
   },
   {
-    value: "Languages test (IELTS, TOEFL)",
+    value: "Languages",
     label: "Languages test (IELTS, TOEFL)",
   },
   { value: "SAT", label: "SAT" },
+];
+const subjects = [
+  { value: "Riyaziyyat", label: "Riyaziyyat" },
+  { value: "Ingilis dili", label: "Ingilis dili" },
+  { value: "Fizika", label: "Fizika" },
+];
+const levels = [
+  { value: "Rayon", label: "Rayon" },
+  { value: "Region", label: "Region" },
+  { value: "Respublika", label: "Respublika" },
+  { value: "Dunya", label: "Dunya" },
+];
+const spots = [
+  { value: "one", label: "1-ci yer (Qızıl medal)" },
+  { value: "two", label: "2-ci yer (Gümüş medal)" },
+  { value: "three", label: "3-cü yer (Bürünc medal)" },
+  { value: "four", label: "4-cü yer" },
 ];
 export {
   firstSelection,
@@ -49,4 +66,7 @@ export {
   countries,
   cities,
   appealing,
+  subjects,
+  levels,
+  spots,
 };

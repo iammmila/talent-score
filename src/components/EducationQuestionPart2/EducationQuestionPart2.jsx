@@ -1,29 +1,17 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useState } from "react";
 import "./EducationQuestionPart2.scss";
 import Select from "react-select";
 import { countries, cities } from "../../data/options";
+import { customStyles } from "./../../data/style-selection";
 import LocalExam from "./LocalExam/LocalExam";
 import Appealing from "./Appealing/Appealing";
-import Atestat from "./Appealing/Atestat/Atestat";
-import LanguageTest from "./Appealing/LanguageTest/LanguageTest";
-import Sat from "./Appealing/SAT/Sat";
-import Additional from "./Appealing/Additional/Additional";
-import BothOfThem from "./BothOfThem/BothOfThem";
+// import BothOfThem from "./BothOfThem/BothOfThem";
 
 const EducationQuestionPart2 = () => {
-  const customStyles = {
-    // Style for the selected option
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? "#038477" : "#F2F6F6",
-      color: state.isSelected ? "white" : "#038477",
-    }),
-    singleValue: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? "#038477" : "#F2F6F6",
-      color: state.isSelected ? "white" : "#038477",
-    }),
+  const [acceptingOption, setAcceptingOption] = useState("");
+  const handleAcceptingOptionChange = (event) => {
+    setAcceptingOption(event.target.value);
   };
   return (
     <form className="education-questions-section">
@@ -49,11 +37,11 @@ const EducationQuestionPart2 = () => {
       </div>
       <div className="university-name">
         <span>Universitetin adı</span>
-        <input type="text" />
+        <input type="text" placeholder="Universitetin adı" />
       </div>
       <div className="speciality">
         <span>İxtisas</span>
-        <input type="text" />
+        <input type="text" placeholder="İxtisas adı" />
       </div>
       <div className="dates">
         <span>Universitetə qəbul və bitirmə tarixi:</span>
@@ -71,25 +59,47 @@ const EducationQuestionPart2 = () => {
         <div className="radios">
           <div>
             <label htmlFor="local">Lokal imtahan</label>
-            <input type="radio" id="local" name="accepting" />
+            <input
+              type="radio"
+              id="local"
+              name="accepting"
+              value="local"
+              checked={acceptingOption === "local"}
+              onChange={handleAcceptingOptionChange}
+            />
           </div>
           <div>
             <label htmlFor="appeal">Müraciət</label>
-            <input type="radio" id="appeal" name="accepting" />
+            <input
+              type="radio"
+              id="appeal"
+              name="accepting"
+              value="appeal"
+              checked={acceptingOption === "appeal"}
+              onChange={handleAcceptingOptionChange}
+            />
           </div>
           <div>
             <label htmlFor="both">Hər ikisi</label>
-            <input type="radio" id="both" name="accepting" />
+            <input
+              type="radio"
+              id="both"
+              name="accepting"
+              value="both"
+              checked={acceptingOption === "both"}
+              onChange={handleAcceptingOptionChange}
+            />
           </div>
         </div>
       </div>
-      <LocalExam />
-      <Appealing />
-      <Additional />
-      <Atestat />
-      <LanguageTest />
-      <Sat />
-      <BothOfThem />
+      {acceptingOption === "local" && <LocalExam />}
+      {acceptingOption === "appeal" && <Appealing />}
+      {acceptingOption === "both" && (
+        <>
+          <LocalExam />
+          <Appealing />
+        </>
+      )}
     </form>
   );
 };
