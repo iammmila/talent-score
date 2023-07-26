@@ -2,11 +2,11 @@
 import React from "react";
 import "./FormSide.scss";
 import Sections from "../Sections/Sections";
-import GeneralQuestionPart1 from "./../GeneralQuestionPart1/GeneralQuestionPart1";
 import ProgressBar from "@ramonak/react-progress-bar";
 import ButtonNext from "./../Buttons/ButtonNext/ButtonNext";
 import ButtonPrevious from "./../Buttons/ButtonPrevious/ButtonPrevious";
-import OlympicsQuestionPart3 from "../OlympicsQuestionPart3/OlympicsQuestionPart3";
+import EducationQuestionPart2 from "./../EducationQuestionPart2/EducationQuestionPart2";
+
 const FormSide = () => {
   return (
     <div className="main-form">
@@ -20,7 +20,7 @@ const FormSide = () => {
           animateOnRender={true}
           isLabelVisible={false}
         />
-        <OlympicsQuestionPart3 />
+        <EducationQuestionPart2 />
       </div>
       <div className="buttons">
         <ButtonPrevious />

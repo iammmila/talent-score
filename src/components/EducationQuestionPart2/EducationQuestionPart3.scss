@@ -1,0 +1,83 @@
+.education-questions-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  .bachelor,
+  .university-name,
+  .speciality,
+  .dates,
+  .type-accepting {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    .line-dates {
+      display: flex;
+      gap: 20px;
+      input {
+        width: 235px;
+        color: #adadad;
+      }
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(70%);
+        width: 20px; /* Set the width of the icon */
+        height: 20px;
+      }
+    }
+    .line-current {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    input:where([type="text"], [type="date"]) {
+      padding: 8px;
+      border-radius: 25px;
+      background-color: #f2f6f6;
+      border: 1px solid #f2f6f6;
+      outline: none;
+      &:hover {
+        border: 1px solid #dbdbdb;
+      }
+    }
+    .radios {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      div {
+        width: 150px;
+        display: flex;
+        padding: 10px;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 15px;
+        border-radius: 25px;
+        background-color: #f2f6f6;
+        font-size: 14px;
+        input[type="radio"] {
+          border-color: 1px solid #d9d9d9;
+          outline: none;
+        }
+        input[type="radio"]:checked + label {
+          color: #038477;
+        }
+      }
+    }
+  }
+
+  .country {
+    width: 50%;
+  }
+  .css-13cymwt-control,
+  .css-t3ipsp-control {
+    background-color: #f2f6f6 !important;
+    border-color: #f2f6f6 !important;
+    border-radius: 25px !important;
+    outline: none !important;
+  }
+  .css-t3ipsp-control {
+    border-color: #038477 !important;
+    box-shadow: 0 0 0 1px #038477 !important;
+  }
+}
