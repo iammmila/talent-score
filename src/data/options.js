@@ -1,23 +1,23 @@
 const firstSelection = [
-  { value: "Təhsil Alıram", label: "Təhsil Alıram" },
-  { value: "Çalışıram", label: "Çalışıram" },
-  { value: "İşsiz", label: "İşsiz" },
+  { value: "thsl", label: "Təhsil Alıram" },
+  { value: "calisiram", label: "Çalışıram" },
+  { value: "issiz", label: "İşsiz" },
   {
-    value: "Təhsil alıram və çalışıram",
+    value: "thslvecilisiram",
     label: "Təhsil alıram və çalışıram",
   },
 ];
 const secondSelection = [
-  { value: "Orta Təhsil", label: "Orta Təhsil" },
-  { value: "Peşə təhsili", label: "Peşə təhsili" },
-  { value: "Bakalavr", label: "Bakalavr" },
-  { value: "Magistratura", label: "Magistratura" },
-  { value: "PhD", label: "PhD" },
+  { value: "orta", label: "Orta Təhsil" },
+  { value: "pese", label: "Peşə təhsili" },
+  { value: "bach", label: "Bakalavr" },
+  { value: "magistr", label: "Magistratura" },
+  { value: "phd", label: "PhD" },
 ];
 const thirdSelection = [
-  { value: "Əlaçı", label: "Əlaçı" },
-  { value: "Zərbəçi", label: "Zərbəçi" },
-  { value: "Heç biri", label: "Heç biri" },
+  { value: "elaci", label: "Əlaçı" },
+  { value: "zerbeci", label: "Zərbəçi" },
+  { value: "none", label: "Heç biri" },
 ];
 const countries = [
   { value: "azerbaijan", label: "Azərbaycan" },

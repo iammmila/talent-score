@@ -2,8 +2,9 @@ import React from "react";
 import "./ButtonPost.scss";
 
 const ButtonPost = () => {
+  const handleClick = (event) => event.preventDefault();
   return (
-    <button className="button-post" type="submit">
+    <button onClick={handleClick} className="button-post" type="submit">
       Təsdiq Et
     </button>
   );

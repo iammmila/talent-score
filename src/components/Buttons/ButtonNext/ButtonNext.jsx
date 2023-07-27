@@ -1,23 +1,24 @@
 import React, { useContext } from "react";
 import "./ButtonNext.scss";
 import { MainContext } from "./../../../context/ContextProvider";
-import { useForm } from "react-hook-form";
 
 const ButtonNext = () => {
-  const { trigger } = useForm();
-  const { handleNext, currentStep } = useContext(MainContext);
+  const { handleNext, currentStep, trigger } = useContext(MainContext);
   const isNextButtonDisabled = currentStep === 4;
 
+  const handleClick = async (event) => {
+    event.preventDefault();
+    const isValid = await trigger();
+    if (isValid) {
+      handleNext();
+    }
+  };
   return (
     <button
       className="button-next"
       disabled={isNextButtonDisabled}
-      onClick={async () => {
-        const isValid = await trigger();
-        if (isValid) {
-          handleNext();
-        }
-      }}
+      type="submit"
+      onClick={handleClick}
     >
       Növbəti
     </button>

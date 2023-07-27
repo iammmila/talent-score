@@ -5,7 +5,6 @@ export const generalQuestion = yup.object().shape({
     .string()
     .min(2, "Name must be at least 2 characters")
     .max(50, "Name must be at most 50 characters")
-    .matches(/^[a-zA-Z\s]*$/, "Name can only contain letters and spaces")
     .required("Name is required"),
   surname: yup
     .string()

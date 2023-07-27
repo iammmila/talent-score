@@ -10,14 +10,10 @@ import { MainContext } from "./../../context/ContextProvider";
 import GeneralQuestionPart1 from "./../GeneralQuestionPart1/GeneralQuestionPart1";
 import EducationQuestionPart2 from "./../EducationQuestionPart2/EducationQuestionPart2";
 import Lists from "./../Lists/Lists";
-import { generalQuestion } from "../../schema/generalQuestion";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
 import ButtonPost from "../Buttons/ButtonPost/ButtonPost";
 
 const FormSide = () => {
-  const { onSubmit } = useContext(MainContext);
-  const { currentStep } = useContext(MainContext);
+  const { currentStep, handleSubmit } = useContext(MainContext);
   const renderComponent = () => {
     if (currentStep === 1) {
       return <GeneralQuestionPart1 />;
@@ -40,10 +36,6 @@ const FormSide = () => {
       return 100;
     }
   };
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(generalQuestion) });
   return (
     <div className="main-form">
       <Sections />
@@ -56,14 +48,19 @@ const FormSide = () => {
           animateOnRender={true}
           isLabelVisible={false}
         />{" "}
-        <form onSubmit={handleSubmit(onSubmit)}>{renderComponent()}</form>
-      </div>
-      <div className="buttons">
-        <div className="buttons-container">
-          {currentStep === 1 ? null : <ButtonPrevious />}
-        </div>
-        {currentStep < 4 && <ButtonNext />}
-        {currentStep === 4 && <ButtonPost />}
+        <form
+          className="form-side__form"
+          onSubmit={handleSubmit((d) => console.log(d))}
+        >
+          {renderComponent()}
+          <div className="buttons">
+            <div className="buttons-container">
+              {currentStep === 1 ? null : <ButtonPrevious />}
+            </div>
+            {currentStep < 4 && <ButtonNext />}
+            {currentStep === 4 && <ButtonPost />}
+          </div>
+        </form>
       </div>
     </div>
   );

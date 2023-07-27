@@ -6,8 +6,12 @@ import { MainContext } from "./../../../context/ContextProvider";
 
 const ButtonPrevious = () => {
   const { handlePrevious } = useContext(MainContext);
+  const handleClick = (event) => {
+    event.preventDefault();
+    handlePrevious();
+  };
   return (
-    <button className="button-previous" onClick={handlePrevious}>
+    <button className="button-previous" onClick={handleClick}>
       <img src={PreviousIcon} alt="previous" />
       Geri
     </button>

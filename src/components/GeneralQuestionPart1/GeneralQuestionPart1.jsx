@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./GeneralQuestionPart1.scss";
 import Select from "react-select";
 import {
@@ -7,31 +7,30 @@ import {
   thirdSelection,
 } from "../../data/options";
 import { customStyles } from "./../../data/style-selection";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { generalQuestion } from "./../../schema/generalQuestion";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useEffect } from "react";
+import { MainContext } from "../../context/ContextProvider";
 
 const GeneralQuestionPart1 = () => {
   const [state, setState] = useState({
     name: "",
     surname: "",
-    employment: null,
-    education: null,
-    degree: null,
+    employment: "",
+    education: "",
+    degree: "",
   });
-
+  const { errors, register, clearErrors } = useContext(MainContext);
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
+    console.log(state);
   };
   const handleSelectChange = (name, selectedOption) => {
-    setState({ ...state, [name]: selectedOption });
+    setState({ ...state, [name]: selectedOption.value });
   };
 
-  const {
-    register,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(generalQuestion) });
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   return (
     <div className="general-questions">
@@ -39,16 +38,14 @@ const GeneralQuestionPart1 = () => {
         <div className="name">
           <label htmlFor="name">Ad*</label>
           <input
-            {...register("name")}
+            {...register("name", { required: true })}
             value={state.name}
             type="text"
             id="name"
             onChange={handleChange}
           />
-          {errors.name ? (
+          {errors.name && (
             <span style={{ color: "red" }}>{errors.name.message}</span>
-          ) : (
-            <></>
           )}
         </div>
         <div className="surname">
@@ -60,10 +57,8 @@ const GeneralQuestionPart1 = () => {
             id="surname"
             onChange={handleChange}
           />
-          {errors.surname ? (
+          {errors.surname && (
             <span style={{ color: "red" }}>{errors.surname.message}</span>
-          ) : (
-            <></>
           )}
         </div>
       </div>
@@ -73,15 +68,14 @@ const GeneralQuestionPart1 = () => {
           {...register("employment")}
           options={firstSelection}
           styles={customStyles}
+          defaultValue={state.employment}
           value={state.employment}
           onChange={(selectedOption) =>
             handleSelectChange("employment", selectedOption)
           }
         />
-        {errors.employment ? (
+        {errors.employment && (
           <span style={{ color: "red" }}>{errors.employment.message}</span>
-        ) : (
-          <></>
         )}
       </div>
       <div className="education">
@@ -90,32 +84,30 @@ const GeneralQuestionPart1 = () => {
           {...register("education")}
           options={secondSelection}
           styles={customStyles}
+          defaultValue={state.education}
           value={state.education}
           onChange={(selectedOption) =>
             handleSelectChange("education", selectedOption)
           }
         />
-        {errors.education ? (
+        {errors.education && (
           <span style={{ color: "red" }}>{errors.education.message}</span>
-        ) : (
-          <></>
         )}
       </div>
       <div className="degree">
         <span>Aşağıdakılardan hansı sizə uyğundur?*</span>
         <Select
           {...register("degree")}
+          value={state.degree}
           options={thirdSelection}
           styles={customStyles}
-          value={state.degree}
+          defaultValue={state.degree}
           onChange={(selectedOption) =>
             handleSelectChange("degree", selectedOption)
           }
         />
-        {errors.degree ? (
+        {errors.degree && (
           <span style={{ color: "red" }}>{errors.degree.message}</span>
-        ) : (
-          <></>
         )}
       </div>
     </div>
