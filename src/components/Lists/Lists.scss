@@ -1,0 +1,57 @@
+.end-part {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  .lists {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    // border: 1px solid #bebebe;
+    .id-section,
+    .uni-name,
+    .degree-name,
+    .date,
+    .delete {
+    }
+    .id-section {
+      border: 1px solid #bebebe;
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+      padding: 16px 10px 16px 20px;
+    }
+    .delete {
+      border: 1px solid #bebebe;
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+    }
+    .uni-name {
+      width: 207px;
+      border: 1px solid #bebebe;
+      border-width: 1px 0 1px;
+      padding: 8px;
+    }
+    .degree-name {
+      width: 70px;
+      padding: 16px 3px;
+      border: 1px solid #bebebe;
+    }
+    .date {
+      width: 135px;
+      padding: 16px 3px;
+      border: 1px solid #bebebe;
+      border-width: 1px 0;
+    }
+    .delete {
+      padding: 11px 8px;
+    }
+  }
+  .new-info {
+    padding: 10px 17px 9px 16px;
+    border-radius: 25px;
+    background-color: #f2f6f6;
+    border: #f2f6f6;
+  }
+}

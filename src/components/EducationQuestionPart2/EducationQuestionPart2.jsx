@@ -14,7 +14,7 @@ const EducationQuestionPart2 = () => {
     setAcceptingOption(event.target.value);
   };
   return (
-    <form className="education-questions-section">
+    <div className="education-questions-section">
       <div className="bachelor">
         <span>
           <span style={{ color: "#038477" }}>Bakalavr</span> pilləsi barədə
@@ -100,7 +100,7 @@ const EducationQuestionPart2 = () => {
           <Appealing />
         </>
       )}
-    </form>
+    </div>
   );
 };
 

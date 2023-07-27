@@ -1,0 +1,11 @@
+.button-post {
+  padding: 15px 50px;
+  border-radius: 25px;
+  background-color: #038477;
+  border: 1px solid #038477;
+  font-size: 16px;
+  color: white;
+  &:hover {
+    background-color: #036057;
+  }
+}
