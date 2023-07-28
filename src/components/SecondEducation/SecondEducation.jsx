@@ -9,6 +9,7 @@ import { MainContext } from "../../context/ContextProvider";
 
 const SecondEducation = () => {
   const { register } = useContext(MainContext);
+  const [degree, setDegree] = useState("");
   const [state, setState] = useState({
     country: "",
     city: "",
@@ -37,6 +38,7 @@ const SecondEducation = () => {
   };
   const handleSelectChange = (name, selectedOption) => {
     setState({ ...state, [name]: selectedOption.value });
+    setDegree((d) => selectedOption.label);
   };
   const handleAcceptingOptionChange = (event) => {
     const newValue = event.target.value;
@@ -63,10 +65,10 @@ const SecondEducation = () => {
           <span style={{ color: "red" }}>{errors.education.message}</span>
         )} */}
       </div>
-      <div className="bachelor">
+      <div className="edu-degree">
         <span>
-          <span style={{ color: "#038477" }}>Bakalavr</span> pilləsi barədə
-          məlumatları qeyd edin
+          <span style={{ color: "#038477" }}>{degree ? degree : "Təhsil"}</span>{" "}
+          pilləsi barədə məlumatları qeyd edin
         </span>
         <div className="selections">
           <Select

@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 30px;
   .education,
-  .bachelor,
+  .edu-degree,
   .university-name,
   .speciality,
   .dates,
@@ -69,7 +69,7 @@
       }
     }
   }
-  .bachelor {
+  .edu-degree {
     .selections {
       display: flex;
       gap: 20px;
