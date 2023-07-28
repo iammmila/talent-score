@@ -1,10 +1,14 @@
 import React from "react";
 import "./Lists.scss";
 import Delete from "./../../assets/icons/Delete.svg";
+import { useContext } from "react";
+import { MainContext } from "./../../context/ContextProvider";
 
 const Lists = () => {
+  const { setShowSecondAdditional } = useContext(MainContext);
   const handleClick = (event) => {
     event.preventDefault();
+    setShowSecondAdditional(true);
   };
   return (
     <div className="end-part">

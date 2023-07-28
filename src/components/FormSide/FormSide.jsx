@@ -11,16 +11,18 @@ import GeneralQuestionPart1 from "./../GeneralQuestionPart1/GeneralQuestionPart1
 import EducationQuestionPart2 from "./../EducationQuestionPart2/EducationQuestionPart2";
 import Lists from "./../Lists/Lists";
 import ButtonPost from "../Buttons/ButtonPost/ButtonPost";
+import SecondEducation from "./../SecondEducation/SecondEducation";
 
 const FormSide = () => {
-  const { currentStep, handleSubmit } = useContext(MainContext);
+  const { currentStep, handleSubmit, showSecondAdditional } =
+    useContext(MainContext);
   const renderComponent = () => {
     if (currentStep === 1) {
       return <GeneralQuestionPart1 />;
     } else if (currentStep === 2) {
       return <EducationQuestionPart2 />;
     } else if (currentStep === 3) {
-      return <Lists />;
+      return <>{showSecondAdditional ? <SecondEducation /> : <Lists />}</>;
     } else if (currentStep === 4) {
       return <OlympicsQuestionPart3 />;
     }
@@ -52,6 +54,7 @@ const FormSide = () => {
           className="form-side__form"
           // onSubmit={handleSubmit((d) => console.log(d))}
         >
+          {/* {showSecondAdditional ? <SecondEducation /> : renderComponent()} */}
           {renderComponent()}
           <div className="buttons">
             <div className="buttons-container">
