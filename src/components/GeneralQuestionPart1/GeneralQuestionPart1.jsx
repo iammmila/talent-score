@@ -19,7 +19,7 @@ const GeneralQuestionPart1 = () => {
     education: "",
     degree: "",
   });
-  const { errors, register, clearErrors } = useContext(MainContext);
+  const { errors, register } = useContext(MainContext);
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
     console.log(state);
@@ -38,7 +38,7 @@ const GeneralQuestionPart1 = () => {
         <div className="name">
           <label htmlFor="name">Ad*</label>
           <input
-            // {...register("name", { required: true })}
+            {...register("name")}
             value={state.name}
             type="text"
             id="name"
@@ -51,7 +51,7 @@ const GeneralQuestionPart1 = () => {
         <div className="surname">
           <label htmlFor="surname">Soyad*</label>
           <input
-            // {...register("surname")}
+            {...register("surname")}
             value={state.surname}
             type="text"
             id="surname"
@@ -65,11 +65,11 @@ const GeneralQuestionPart1 = () => {
       <div className="employment">
         <span>Hazırda məşğuliyyətiniz?*</span>
         <Select
-          // {...register("employment")}
+          {...register("employment")}
           options={firstSelection}
           styles={customStyles}
           defaultValue={state.employment}
-          value={state.employment}
+          // value={state.employment}
           onChange={(selectedOption) =>
             handleSelectChange("employment", selectedOption)
           }
@@ -81,11 +81,11 @@ const GeneralQuestionPart1 = () => {
       <div className="education">
         <span>Təhsiliniz?*</span>
         <Select
-          // {...register("education")}
+          {...register("education")}
           options={secondSelection}
           styles={customStyles}
           defaultValue={state.education}
-          value={state.education}
+          // value={state.education}
           onChange={(selectedOption) =>
             handleSelectChange("education", selectedOption)
           }
@@ -97,8 +97,8 @@ const GeneralQuestionPart1 = () => {
       <div className="degree">
         <span>Aşağıdakılardan hansı sizə uyğundur?*</span>
         <Select
-          // {...register("degree")}
-          value={state.degree}
+          {...register("degree")}
+          // value={state.degree}
           options={thirdSelection}
           styles={customStyles}
           defaultValue={state.degree}

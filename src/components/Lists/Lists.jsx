@@ -3,6 +3,9 @@ import "./Lists.scss";
 import Delete from "./../../assets/icons/Delete.svg";
 
 const Lists = () => {
+  const handleClick = (event) => {
+    event.preventDefault();
+  };
   return (
     <div className="end-part">
       <ul className="lists">
@@ -14,7 +17,9 @@ const Lists = () => {
           <img src={Delete} alt="delete icon" />
         </li>
       </ul>
-      <button className="new-info">Yeni Təhsil məlumatları əlavə et +</button>
+      <button className="new-info" onClick={handleClick}>
+        Yeni Təhsil məlumatları əlavə et +
+      </button>
     </div>
   );
 };
