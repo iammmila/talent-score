@@ -38,34 +38,34 @@ const GeneralQuestionPart1 = () => {
         <div className="name">
           <label htmlFor="name">Ad*</label>
           <input
-            {...register("name", { required: true })}
+            // {...register("name", { required: true })}
             value={state.name}
             type="text"
             id="name"
             onChange={handleChange}
           />
-          {errors.name && (
+          {/* {errors.name && (
             <span style={{ color: "red" }}>{errors.name.message}</span>
-          )}
+          )} */}
         </div>
         <div className="surname">
           <label htmlFor="surname">Soyad*</label>
           <input
-            {...register("surname")}
+            // {...register("surname")}
             value={state.surname}
             type="text"
             id="surname"
             onChange={handleChange}
           />
-          {errors.surname && (
+          {/* {errors.surname && (
             <span style={{ color: "red" }}>{errors.surname.message}</span>
-          )}
+          )} */}
         </div>
       </div>
       <div className="employment">
         <span>Hazırda məşğuliyyətiniz?*</span>
         <Select
-          {...register("employment")}
+          // {...register("employment")}
           options={firstSelection}
           styles={customStyles}
           defaultValue={state.employment}
@@ -74,14 +74,14 @@ const GeneralQuestionPart1 = () => {
             handleSelectChange("employment", selectedOption)
           }
         />
-        {errors.employment && (
+        {/* {errors.employment && (
           <span style={{ color: "red" }}>{errors.employment.message}</span>
-        )}
+        )} */}
       </div>
       <div className="education">
         <span>Təhsiliniz?*</span>
         <Select
-          {...register("education")}
+          // {...register("education")}
           options={secondSelection}
           styles={customStyles}
           defaultValue={state.education}
@@ -90,14 +90,14 @@ const GeneralQuestionPart1 = () => {
             handleSelectChange("education", selectedOption)
           }
         />
-        {errors.education && (
+        {/* {errors.education && (
           <span style={{ color: "red" }}>{errors.education.message}</span>
-        )}
+        )} */}
       </div>
       <div className="degree">
         <span>Aşağıdakılardan hansı sizə uyğundur?*</span>
         <Select
-          {...register("degree")}
+          // {...register("degree")}
           value={state.degree}
           options={thirdSelection}
           styles={customStyles}
@@ -106,9 +106,9 @@ const GeneralQuestionPart1 = () => {
             handleSelectChange("degree", selectedOption)
           }
         />
-        {errors.degree && (
+        {/* {errors.degree && (
           <span style={{ color: "red" }}>{errors.degree.message}</span>
-        )}
+        )} */}
       </div>
     </div>
   );

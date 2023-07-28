@@ -8,10 +8,10 @@ const ButtonNext = () => {
 
   const handleClick = async (event) => {
     event.preventDefault();
-    const isValid = await trigger();
-    if (isValid) {
-      handleNext();
-    }
+    // const isValid = await trigger();
+    // if (isValid) {
+    handleNext();
+    // }
   };
   return (
     <button

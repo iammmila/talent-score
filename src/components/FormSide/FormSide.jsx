@@ -20,9 +20,9 @@ const FormSide = () => {
     } else if (currentStep === 2) {
       return <EducationQuestionPart2 />;
     } else if (currentStep === 3) {
-      return <OlympicsQuestionPart3 />;
-    } else if (currentStep === 4) {
       return <Lists />;
+    } else if (currentStep === 4) {
+      return <OlympicsQuestionPart3 />;
     }
   };
   const progress = () => {
@@ -50,7 +50,7 @@ const FormSide = () => {
         />{" "}
         <form
           className="form-side__form"
-          onSubmit={handleSubmit((d) => console.log(d))}
+          // onSubmit={handleSubmit((d) => console.log(d))}
         >
           {renderComponent()}
           <div className="buttons">
