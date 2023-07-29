@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { createContext } from "react";
 import { generalQuestion } from "../schema/generalQuestion";
 import { useForm } from "react-hook-form";
@@ -55,13 +55,10 @@ function ContextProvider({ children }) {
     currentTuition: "",
     acceptingOption: "",
   });
-  // useEffect(() => {
-  //   console.log(stateGeneral);
-  // }, [stateGeneral]);
+  // !Functions
   const handleOlympicsAnswerSelect = (event) => {
     setAnswerSelected(event.target.value);
   };
-  // !Functions
   const handleNext = () => {
     if (currentStep === 1) {
       setCurrentStep(2);
@@ -143,12 +140,94 @@ function ContextProvider({ children }) {
       return 100;
     }
   };
+  // !GENERAL
   const handleGeneralChange = (e) => {
     setStateGeneral({ ...stateGeneral, [e.target.name]: e.target.value });
   };
-  const handleSelectGeneralChange = (name, selectedOption) => {
+  const handleGeneralSelectChange = (name, selectedOption) => {
     const selectedValue = selectedOption ? selectedOption.label : "";
     setStateGeneral({ ...stateGeneral, [name]: selectedValue });
+  };
+  //! BACHELOR
+  const handleBachelorInputChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    if (type === "checkbox") {
+      setStateBachelor((prevState) => ({
+        ...prevState,
+        [name]: checked,
+        endDate: checked ? "current" : prevState.endDate,
+      }));
+    } else {
+      setStateBachelor((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+  };
+  const handleBachelorSelectChange = (name, selectedOption) => {
+    const selectedValue = selectedOption ? selectedOption.label : "";
+    setStateBachelor({ ...stateBachelor, [name]: selectedValue });
+  };
+  const handleBachelorAcceptingOptionChange = (event) => {
+    const newValue = event.target.value;
+    setStateBachelor((prevState) => ({
+      ...prevState,
+      acceptingOption: newValue,
+    }));
+  };
+  // !MASTER
+  const handleMasterInputChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    if (type === "checkbox") {
+      setStateMaster((prevState) => ({
+        ...prevState,
+        [name]: checked,
+        endDate: checked ? "current" : prevState.endDate,
+      }));
+    } else {
+      setStateMaster((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+    // console.log(stateMaster);
+  };
+  const handleMasterSelectChange = (name, selectedOption) => {
+    setStateMaster({ ...stateMaster, [name]: selectedOption.label });
+  };
+  const handleMasterAcceptingOptionChange = (event) => {
+    const newValue = event.target.value;
+    setStateMaster((prevState) => ({
+      ...prevState,
+      acceptingOption: newValue,
+    }));
+  };
+  // ! PHD
+  const handlePHDInputChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    if (type === "checkbox") {
+      setStatePhd((prevState) => ({
+        ...prevState,
+        [name]: checked,
+        endDate: checked ? "current" : prevState.endDate,
+      }));
+    } else {
+      setStatePhd((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+    console.log(statePhd);
+  };
+  const handlePHDSelectChange = (name, selectedOption) => {
+    setStatePhd({ ...statePhd, [name]: selectedOption.label });
+  };
+  const handlePHDAcceptingOptionChange = (event) => {
+    const newValue = event.target.value;
+    setStatePhd((prevState) => ({
+      ...prevState,
+      acceptingOption: newValue,
+    }));
   };
   const {
     register,
@@ -160,8 +239,17 @@ function ContextProvider({ children }) {
 
   //?VALUES
   const values = {
+    handleGeneralSelectChange,
     handleGeneralChange,
-    handleSelectGeneralChange,
+    handleBachelorSelectChange,
+    handleBachelorAcceptingOptionChange,
+    handleBachelorInputChange,
+    handleMasterSelectChange,
+    handleMasterInputChange,
+    handleMasterAcceptingOptionChange,
+    handlePHDInputChange,
+    handlePHDSelectChange,
+    handlePHDAcceptingOptionChange,
     currentStep,
     setCurrentStep,
     handleNext,

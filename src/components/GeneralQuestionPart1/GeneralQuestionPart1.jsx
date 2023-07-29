@@ -16,8 +16,8 @@ const GeneralQuestionPart1 = () => {
     errors,
     register,
     stateGeneral,
+    handleGeneralSelectChange,
     handleGeneralChange,
-    handleSelectGeneralChange,
   } = useContext(MainContext);
   useEffect(() => {
     console.log(stateGeneral);
@@ -69,7 +69,7 @@ const GeneralQuestionPart1 = () => {
           }
           placeholder={"Seçin..."}
           onChange={(selectedOption) =>
-            handleSelectGeneralChange("employment", selectedOption)
+            handleGeneralSelectChange("employment", selectedOption)
           }
         />
         {/* {errors.employment && (
@@ -92,7 +92,7 @@ const GeneralQuestionPart1 = () => {
           }
           placeholder={"Seçin..."}
           onChange={(selectedOption) =>
-            handleSelectGeneralChange("education", selectedOption)
+            handleGeneralSelectChange("education", selectedOption)
           }
         />
         {/* {errors.education && (
@@ -116,7 +116,7 @@ const GeneralQuestionPart1 = () => {
           }
           placeholder={"Seçin..."}
           onChange={(selectedOption) =>
-            handleSelectGeneralChange("degree", selectedOption)
+            handleGeneralSelectChange("degree", selectedOption)
           }
         />
         {/* {errors.degree && (

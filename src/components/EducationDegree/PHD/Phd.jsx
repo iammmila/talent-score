@@ -7,35 +7,21 @@ import { customStyles } from "../../../data/style-selection";
 import Select from "react-select";
 import { useContext } from "react";
 import { MainContext } from "../../../context/ContextProvider";
+import { useEffect } from "react";
 
 const Phd = () => {
-  const { register, statePhd, setStatePhd } = useContext(MainContext);
-  const handleInputChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    if (type === "checkbox") {
-      setStatePhd((prevState) => ({
-        ...prevState,
-        [name]: checked,
-        endDate: checked ? "current" : prevState.endDate,
-      }));
-    } else {
-      setStatePhd((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
+  const {
+    register,
+    statePhd,
+    handlePHDInputChange,
+    handlePHDSelectChange,
+    handlePHDAcceptingOptionChange,
+  } = useContext(MainContext);
+
+  useEffect(() => {
     console.log(statePhd);
-  };
-  const handleSelectChange = (name, selectedOption) => {
-    setStatePhd({ ...statePhd, [name]: selectedOption.label });
-  };
-  const handleAcceptingOptionChange = (event) => {
-    const newValue = event.target.value;
-    setStatePhd((prevState) => ({
-      ...prevState,
-      acceptingOption: newValue,
-    }));
-  };
+  }, [statePhd]);
+
   return (
     <div className="phd-education-questions-section">
       <div className="phd">
@@ -45,27 +31,41 @@ const Phd = () => {
         </span>
         <div className="selections">
           <Select
+            {...register("country")}
             styles={customStyles}
             options={countries}
+            value={
+              statePhd.city
+                ? {
+                    label: statePhd.city,
+                    value: statePhd.city,
+                  }
+                : null
+            }
             placeholder="Ölkə"
             className="country"
             name="country"
-            defaultValue={statePhd.country}
             onChange={(selectedOption) =>
-              handleSelectChange("country", selectedOption)
+              handlePHDSelectChange("country", selectedOption)
             }
           />
           {statePhd.country && (
             <Select
               styles={customStyles}
               options={cities}
+              value={
+                statePhd.city
+                  ? {
+                      label: statePhd.city,
+                      value: statePhd.city,
+                    }
+                  : null
+              }
               placeholder="Şəhər"
               className="city"
               name="city"
-              defaultValue={statePhd.city}
-              // value={statePhd.city}
               onChange={(selectedOption) =>
-                handleSelectChange("city", selectedOption)
+                handlePHDSelectChange("city", selectedOption)
               }
             />
           )}
@@ -78,7 +78,7 @@ const Phd = () => {
           placeholder="Universitetin adı"
           name="universityName"
           value={statePhd.universityName}
-          onChange={handleInputChange}
+          onChange={handlePHDInputChange}
         />
       </div>
       <div className="speciality">
@@ -88,23 +88,25 @@ const Phd = () => {
           placeholder="İxtisas adı"
           name="speciality"
           value={statePhd.speciality}
-          onChange={handleInputChange}
+          onChange={handlePHDInputChange}
         />
       </div>
       <div className="dates">
         <span>Universitetə qəbul və bitirmə tarixi:</span>
         <div className="line-dates">
           <input
+            {...register("startDate")}
             type="date"
             name="startDate"
             value={statePhd.startDate}
-            onChange={handleInputChange}
+            onChange={handlePHDInputChange}
           />
           <input
+            {...register("endDate")}
             type="date"
             name="endDate"
             value={statePhd.currentTuition ? "current" : statePhd.endDate}
-            onChange={handleInputChange}
+            onChange={handlePHDInputChange}
             disabled={statePhd.currentTuition}
           />
         </div>
@@ -115,7 +117,7 @@ const Phd = () => {
             id="current"
             name="currentTuition"
             checked={statePhd.currentTuition}
-            onChange={handleInputChange}
+            onChange={handlePHDInputChange}
           />
         </div>
       </div>
@@ -130,7 +132,7 @@ const Phd = () => {
               name="accepting"
               value="local"
               checked={statePhd.acceptingOption === "local"}
-              onChange={handleAcceptingOptionChange}
+              onChange={handlePHDAcceptingOptionChange}
             />
           </div>
           <div>
@@ -141,7 +143,7 @@ const Phd = () => {
               name="accepting"
               value="appeal"
               checked={statePhd.acceptingOption === "appeal"}
-              onChange={handleAcceptingOptionChange}
+              onChange={handlePHDAcceptingOptionChange}
             />
           </div>
           <div>
@@ -152,7 +154,7 @@ const Phd = () => {
               name="accepting"
               value="both"
               checked={statePhd.acceptingOption === "both"}
-              onChange={handleAcceptingOptionChange}
+              onChange={handlePHDAcceptingOptionChange}
             />
           </div>
         </div>

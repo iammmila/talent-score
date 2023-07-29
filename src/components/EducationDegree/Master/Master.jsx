@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Master.scss";
 import LocalExam from "../../EducationQuestionPart2/LocalExam/LocalExam";
 import Appealing from "../../EducationQuestionPart2/Appealing/Appealing";
@@ -9,34 +9,17 @@ import { customStyles } from "../../../data/style-selection";
 import { cities, countries } from "../../../data/options";
 
 const Master = () => {
-  const { register, stateMaster, setStateMaster } = useContext(MainContext);
+  const {
+    register,
+    stateMaster,
+    handleMasterSelectChange,
+    handleMasterInputChange,
+    handleMasterAcceptingOptionChange,
+  } = useContext(MainContext);
 
-  const handleInputChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    if (type === "checkbox") {
-      setStateMaster((prevState) => ({
-        ...prevState,
-        [name]: checked,
-        endDate: checked ? "current" : prevState.endDate,
-      }));
-    } else {
-      setStateMaster((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
+  useEffect(() => {
     console.log(stateMaster);
-  };
-  const handleSelectChange = (name, selectedOption) => {
-    setStateMaster({ ...stateMaster, [name]: selectedOption.label });
-  };
-  const handleAcceptingOptionChange = (event) => {
-    const newValue = event.target.value;
-    setStateMaster((prevState) => ({
-      ...prevState,
-      acceptingOption: newValue,
-    }));
-  };
+  }, [stateMaster]);
   return (
     <div className="master-education-questions-section">
       <div className="master">
@@ -46,27 +29,42 @@ const Master = () => {
         </span>
         <div className="selections">
           <Select
+            {...register("country")}
             styles={customStyles}
             options={countries}
-            placeholder="Ölkə"
+            value={
+              stateMaster.country
+                ? {
+                    label: stateMaster.country,
+                    value: stateMaster.country,
+                  }
+                : null
+            }
+            placeholder="Ölkə..."
             className="country"
             name="country"
-            defaultValue={stateMaster.country}
             onChange={(selectedOption) =>
-              handleSelectChange("country", selectedOption)
+              handleMasterSelectChange("country", selectedOption)
             }
           />
           {stateMaster.country && (
             <Select
+              {...register("city")}
               styles={customStyles}
               options={cities}
+              value={
+                stateMaster.city
+                  ? {
+                      label: stateMaster.city,
+                      value: stateMaster.city,
+                    }
+                  : null
+              }
               placeholder="Şəhər"
               className="city"
               name="city"
-              defaultValue={stateMaster.city}
-              // value={stateMaster.city}
               onChange={(selectedOption) =>
-                handleSelectChange("city", selectedOption)
+                handleMasterSelectChange("city", selectedOption)
               }
             />
           )}
@@ -79,7 +77,7 @@ const Master = () => {
           placeholder="Universitetin adı"
           name="universityName"
           value={stateMaster.universityName}
-          onChange={handleInputChange}
+          onChange={handleMasterInputChange}
         />
       </div>
       <div className="speciality">
@@ -89,23 +87,25 @@ const Master = () => {
           placeholder="İxtisas adı"
           name="speciality"
           value={stateMaster.speciality}
-          onChange={handleInputChange}
+          onChange={handleMasterInputChange}
         />
       </div>
       <div className="dates">
         <span>Universitetə qəbul və bitirmə tarixi:</span>
         <div className="line-dates">
           <input
+            {...register("startDate")}
             type="date"
             name="startDate"
             value={stateMaster.startDate}
-            onChange={handleInputChange}
+            onChange={handleMasterInputChange}
           />
           <input
+            {...register("endDate")}
             type="date"
             name="endDate"
             value={stateMaster.currentTuition ? "current" : stateMaster.endDate}
-            onChange={handleInputChange}
+            onChange={handleMasterInputChange}
             disabled={stateMaster.currentTuition}
           />
         </div>
@@ -116,7 +116,7 @@ const Master = () => {
             id="current"
             name="currentTuition"
             checked={stateMaster.currentTuition}
-            onChange={handleInputChange}
+            onChange={handleMasterInputChange}
           />
         </div>
       </div>
@@ -131,7 +131,7 @@ const Master = () => {
               name="accepting"
               value="local"
               checked={stateMaster.acceptingOption === "local"}
-              onChange={handleAcceptingOptionChange}
+              onChange={handleMasterAcceptingOptionChange}
             />
           </div>
           <div>
@@ -142,7 +142,7 @@ const Master = () => {
               name="accepting"
               value="appeal"
               checked={stateMaster.acceptingOption === "appeal"}
-              onChange={handleAcceptingOptionChange}
+              onChange={handleMasterAcceptingOptionChange}
             />
           </div>
           <div>
@@ -153,7 +153,7 @@ const Master = () => {
               name="accepting"
               value="both"
               checked={stateMaster.acceptingOption === "both"}
-              onChange={handleAcceptingOptionChange}
+              onChange={handleMasterAcceptingOptionChange}
             />
           </div>
         </div>
