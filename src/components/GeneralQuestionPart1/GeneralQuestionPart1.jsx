@@ -7,30 +7,21 @@ import {
   thirdSelection,
 } from "../../data/options";
 import { customStyles } from "./../../data/style-selection";
-import { useContext, useState } from "react";
-import { useEffect } from "react";
+import { useContext } from "react";
 import { MainContext } from "../../context/ContextProvider";
+import { useEffect } from "react";
 
 const GeneralQuestionPart1 = () => {
-  const [state, setState] = useState({
-    name: "",
-    surname: "",
-    employment: "",
-    education: "",
-    degree: "",
-  });
-  const { errors, register } = useContext(MainContext);
-  const handleChange = (e) => {
-    setState({ ...state, [e.target.name]: e.target.value });
-    console.log(state);
-  };
-  const handleSelectChange = (name, selectedOption) => {
-    setState({ ...state, [name]: selectedOption.value });
-  };
-
+  const {
+    errors,
+    register,
+    stateGeneral,
+    handleGeneralChange,
+    handleSelectGeneralChange,
+  } = useContext(MainContext);
   useEffect(() => {
-    console.log(state);
-  }, [state]);
+    console.log(stateGeneral);
+  }, [stateGeneral]);
 
   return (
     <div className="general-questions">
@@ -39,10 +30,10 @@ const GeneralQuestionPart1 = () => {
           <label htmlFor="name">Ad*</label>
           <input
             {...register("name")}
-            value={state.name}
+            value={stateGeneral.name}
             type="text"
             id="name"
-            onChange={handleChange}
+            onChange={handleGeneralChange}
           />
           {/* {errors.name && (
             <span style={{ color: "red" }}>{errors.name.message}</span>
@@ -52,10 +43,10 @@ const GeneralQuestionPart1 = () => {
           <label htmlFor="surname">Soyad*</label>
           <input
             {...register("surname")}
-            value={state.surname}
+            value={stateGeneral.surname}
             type="text"
             id="surname"
-            onChange={handleChange}
+            onChange={handleGeneralChange}
           />
           {/* {errors.surname && (
             <span style={{ color: "red" }}>{errors.surname.message}</span>
@@ -68,10 +59,17 @@ const GeneralQuestionPart1 = () => {
           {...register("employment")}
           options={firstSelection}
           styles={customStyles}
-          defaultValue={state.employment}
-          // value={state.employment}
+          value={
+            stateGeneral.employment
+              ? {
+                  label: stateGeneral.employment,
+                  value: stateGeneral.employment,
+                }
+              : null
+          }
+          placeholder={"Seçin..."}
           onChange={(selectedOption) =>
-            handleSelectChange("employment", selectedOption)
+            handleSelectGeneralChange("employment", selectedOption)
           }
         />
         {/* {errors.employment && (
@@ -84,10 +82,17 @@ const GeneralQuestionPart1 = () => {
           {...register("education")}
           options={secondSelection}
           styles={customStyles}
-          defaultValue={state.education}
-          // value={state.education}
+          value={
+            stateGeneral.education
+              ? {
+                  label: stateGeneral.education,
+                  value: stateGeneral.education,
+                }
+              : null
+          }
+          placeholder={"Seçin..."}
           onChange={(selectedOption) =>
-            handleSelectChange("education", selectedOption)
+            handleSelectGeneralChange("education", selectedOption)
           }
         />
         {/* {errors.education && (
@@ -98,12 +103,20 @@ const GeneralQuestionPart1 = () => {
         <span>Aşağıdakılardan hansı sizə uyğundur?*</span>
         <Select
           {...register("degree")}
-          // value={state.degree}
+          // value={stateGeneral.degree}
           options={thirdSelection}
           styles={customStyles}
-          defaultValue={state.degree}
+          value={
+            stateGeneral.degree
+              ? {
+                  label: stateGeneral.degree,
+                  value: stateGeneral.degree,
+                }
+              : null
+          }
+          placeholder={"Seçin..."}
           onChange={(selectedOption) =>
-            handleSelectChange("degree", selectedOption)
+            handleSelectGeneralChange("degree", selectedOption)
           }
         />
         {/* {errors.degree && (

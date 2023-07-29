@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./OlympicsQuestionPart3.scss";
 import OlympicsQuestionPart4 from "../OlympicsQuestionPart4/OlympicsQuestionPart4";
+import { useContext } from "react";
+import { MainContext } from "../../context/ContextProvider";
 
 const OlympicsQuestionPart3 = () => {
-  const [answerSelected, setAnswerSelected] = useState("");
-  const handleAnswerSelect = (event) => {
-    setAnswerSelected(event.target.value);
-  };
-  
+  const { handleOlympicsAnswerSelect, answerSelected } =
+    useContext(MainContext);
+
   return (
     <div className="olympics-question-part3">
       <div className="winner">
@@ -20,7 +20,7 @@ const OlympicsQuestionPart3 = () => {
               id="yes"
               value={"yes"}
               name="experience"
-              onChange={handleAnswerSelect}
+              onChange={handleOlympicsAnswerSelect}
             />
           </div>
           <div>
@@ -30,7 +30,7 @@ const OlympicsQuestionPart3 = () => {
               name="experience"
               id="no"
               value={"no"}
-              onChange={handleAnswerSelect}
+              onChange={handleOlympicsAnswerSelect}
             />
           </div>
         </div>
