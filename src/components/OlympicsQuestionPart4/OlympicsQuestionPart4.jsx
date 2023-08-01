@@ -3,22 +3,14 @@ import "./OlympicsQuestionPart4.scss";
 import Select from "react-select";
 import { subjects, levels, spots } from "../../data/options";
 import { customStyles } from "./../../data/style-selection";
-import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { MainContext } from "../../context/ContextProvider";
 
 const OlympicsQuestionPart4 = () => {
-  const { register } = useContext(MainContext);
-  const [stateOlympics, setStateOlympics] = useState({
-    subject: "",
-    level: "",
-    spot: "",
-  });
-  const handleSelectChange = (name, selectedOption) => {
-    const selectedValue = selectedOption.label;
-    setStateOlympics({ ...stateOlympics, [name]: selectedValue });
-  };
+  const { register, stateOlympics, handleOlympicsSelectChange } =
+    useContext(MainContext);
+
   useEffect(() => {
     console.log(stateOlympics);
   }, [stateOlympics]);
@@ -31,9 +23,17 @@ const OlympicsQuestionPart4 = () => {
           {...register("subject")}
           styles={customStyles}
           options={subjects}
-          defaultValue={stateOlympics.subject}
+          value={
+            stateOlympics.subject
+              ? {
+                  label: stateOlympics.subject,
+                  value: stateOlympics.subject,
+                }
+              : null
+          }
+          placeholder={"Seçin..."}
           onChange={(selectedOption) =>
-            handleSelectChange("subject", selectedOption)
+            handleOlympicsSelectChange("subject", selectedOption)
           }
         />
       </div>
@@ -43,9 +43,17 @@ const OlympicsQuestionPart4 = () => {
           {...register("level")}
           styles={customStyles}
           options={levels}
-          defaultValue={stateOlympics.level}
+          value={
+            stateOlympics.level
+              ? {
+                  label: stateOlympics.level,
+                  value: stateOlympics.level,
+                }
+              : null
+          }
+          placeholder={"Seçin..."}
           onChange={(selectedOption) =>
-            handleSelectChange("level", selectedOption)
+            handleOlympicsSelectChange("level", selectedOption)
           }
         />
       </div>
@@ -55,9 +63,17 @@ const OlympicsQuestionPart4 = () => {
           {...register("spot")}
           styles={customStyles}
           options={spots}
-          defaultValue={stateOlympics.spot}
+          value={
+            stateOlympics.spot
+              ? {
+                  label: stateOlympics.spot,
+                  value: stateOlympics.spot,
+                }
+              : null
+          }
+          placeholder={"Seçin..."}
           onChange={(selectedOption) =>
-            handleSelectChange("spot", selectedOption)
+            handleOlympicsSelectChange("spot", selectedOption)
           }
         />
       </div>

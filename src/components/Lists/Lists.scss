@@ -6,46 +6,41 @@
   gap: 30px;
   .lists {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    // border: 1px solid #bebebe;
-    .id-section,
-    .uni-name,
-    .degree-name,
-    .date,
-    .delete {
-    }
-    .id-section {
-      border: 1px solid #bebebe;
-      border-top-left-radius: 25px;
-      border-bottom-left-radius: 25px;
-      padding: 16px 10px 16px 20px;
-    }
-    .delete {
-      border: 1px solid #bebebe;
-      border-top-right-radius: 25px;
-      border-bottom-right-radius: 25px;
-    }
-    .uni-name {
-      width: 207px;
-      border: 1px solid #bebebe;
-      border-width: 1px 0 1px;
-      padding: 8px;
-    }
-    .degree-name {
-      width: 70px;
-      padding: 16px 3px;
-      border: 1px solid #bebebe;
-    }
-    .date {
-      width: 135px;
-      padding: 16px 3px;
-      border: 1px solid #bebebe;
-      border-width: 1px 0;
-    }
-    .delete {
-      padding: 11px 8px;
+    gap: 15px;
+    li {
+      border: 2px solid #bebebe;
+      border-radius: 25px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      .id-section {
+        padding: 16px 10px 16px 20px;
+        border: 1px solid #bebebe;
+        border-width: 0 2px 0 0;
+      }
+      .uni-name {
+        width: 207px;
+        padding: 0 8px;
+      }
+      .degree-name {
+        width: 70px;
+        padding: 16px 2px 16px 4px;
+        border: 2px solid #bebebe;
+        border-width: 0 2px 0;
+      }
+      .date {
+        width: 135px;
+        padding: 8px 3px;
+        border: 2px solid #bebebe;
+        border-width: 0 2px 0 0;
+      }
+      .delete {
+        padding: 11px 8px;
+      }
     }
   }
   .new-info {

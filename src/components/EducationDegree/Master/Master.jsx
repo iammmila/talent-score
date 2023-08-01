@@ -94,14 +94,14 @@ const Master = () => {
         <span>Universitetə qəbul və bitirmə tarixi:</span>
         <div className="line-dates">
           <input
-            {...register("startDate")}
+            // {...register("startDate")}
             type="date"
             name="startDate"
             value={stateMaster.startDate}
             onChange={handleMasterInputChange}
           />
           <input
-            {...register("endDate")}
+            // {...register("endDate")}
             type="date"
             name="endDate"
             value={stateMaster.currentTuition ? "current" : stateMaster.endDate}

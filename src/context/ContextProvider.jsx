@@ -55,6 +55,22 @@ function ContextProvider({ children }) {
     currentTuition: "",
     acceptingOption: "",
   });
+  const [stateOlympics, setStateOlympics] = useState({
+    subject: "",
+    level: "",
+    spot: "",
+  });
+  const [stateNew, setStateNew] = useState({
+    degree: "",
+    country: "",
+    city: "",
+    universityName: "",
+    speciality: "",
+    startDate: "",
+    endDate: "",
+    currentTuition: "",
+    acceptingOption: "",
+  });
   // !Functions
   const handleOlympicsAnswerSelect = (event) => {
     setAnswerSelected(event.target.value);
@@ -73,7 +89,12 @@ function ContextProvider({ children }) {
       setCurrentStep(3);
       setShowSecondAdditional(false);
     } else if (currentStep === 3) {
-      setCurrentStep((prevStep) => prevStep + 1);
+      if (showSecondAdditional) {
+        setCurrentStep(3);
+        setShowSecondAdditional(false);
+      } else {
+        setCurrentStep((prevStep) => prevStep + 1);
+      }
     } else {
       setCurrentStep((prevStep) => prevStep + 1);
     }
@@ -229,6 +250,36 @@ function ContextProvider({ children }) {
       acceptingOption: newValue,
     }));
   };
+  const handleOlympicsSelectChange = (name, selectedOption) => {
+    const selectedValue = selectedOption.label;
+    setStateOlympics({ ...stateOlympics, [name]: selectedValue });
+  };
+  const handleNewInputChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    if (type === "checkbox") {
+      setStateNew((prevState) => ({
+        ...prevState,
+        [name]: checked,
+        endDate: checked ? "current" : prevState.endDate,
+      }));
+    } else {
+      setStateNew((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+  };
+  const handleNewSelectChange = (name, selectedOption) => {
+    setStateNew({ ...stateNew, [name]: selectedOption.label });
+    // setDegree((d) => selectedOption.label);
+  };
+  const handleNewAcceptingOptionChange = (event) => {
+    const newValue = event.target.value;
+    setStateNew((prevState) => ({
+      ...prevState,
+      acceptingOption: newValue,
+    }));
+  };
   const {
     register,
     handleSubmit,
@@ -250,12 +301,16 @@ function ContextProvider({ children }) {
     handlePHDInputChange,
     handlePHDSelectChange,
     handlePHDAcceptingOptionChange,
+    handleOlympicsSelectChange,
+    handleNewSelectChange,
+    handleNewAcceptingOptionChange,
     currentStep,
     setCurrentStep,
     handleNext,
     handlePrevious,
     register,
     handleSubmit,
+    handleNewInputChange,
     errors,
     trigger,
     clearErrors,
@@ -272,6 +327,10 @@ function ContextProvider({ children }) {
     setStateMaster,
     statePhd,
     setStatePhd,
+    stateNew,
+    setStateNew,
+    stateOlympics,
+    setStateOlympics,
     answerSelected,
     setAnswerSelected,
     handleOlympicsAnswerSelect,

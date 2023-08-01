@@ -6,59 +6,40 @@ import Select from "react-select";
 import LocalExam from "../EducationQuestionPart2/LocalExam/LocalExam";
 import Appealing from "../EducationQuestionPart2/Appealing/Appealing";
 import { MainContext } from "../../context/ContextProvider";
+import { useEffect } from "react";
 
 const SecondEducation = () => {
-  const { register } = useContext(MainContext);
-  const [degree, setDegree] = useState("");
-  const [state, setState] = useState({
-    country: "",
-    city: "",
-    universityName: "",
-    speciality: "",
-    startDate: "",
-    endDate: "",
-    currentTuition: "",
-    acceptingOption: "",
-  });
-  const handleInputChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    if (type === "checkbox") {
-      setState((prevState) => ({
-        ...prevState,
-        [name]: checked,
-        endDate: checked ? "current" : prevState.endDate,
-      }));
-    } else {
-      setState((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
-    console.log(state);
-  };
-  const handleSelectChange = (name, selectedOption) => {
-    setState({ ...state, [name]: selectedOption.value });
-    setDegree((d) => selectedOption.label);
-  };
-  const handleAcceptingOptionChange = (event) => {
-    const newValue = event.target.value;
-    setState((prevState) => ({
-      ...prevState,
-      acceptingOption: newValue,
-    }));
-  };
+  const {
+    register,
+    stateNew,
+    handleNewInputChange,
+    handleNewSelectChange,
+    handleNewAcceptingOptionChange,
+  } = useContext(MainContext);
+
+  useEffect(() => {
+    console.log(stateNew);
+  }, [stateNew]);
+  
   return (
     <div className="second-education-questions-section">
       <div className="education">
         <span>Təhsiliniz?*</span>
         <Select
-          {...register("education")}
+          {...register("degree")}
           options={secondSelection}
           styles={customStyles}
-          defaultValue={state.education}
-          // value={state.education}
+          value={
+            stateNew.degree
+              ? {
+                  label: stateNew.degree,
+                  value: stateNew.degree,
+                }
+              : null
+          }
+          placeholder={"Seçin..."}
           onChange={(selectedOption) =>
-            handleSelectChange("education", selectedOption)
+            handleNewSelectChange("degree", selectedOption)
           }
         />
         {/* {errors.education && (
@@ -67,32 +48,49 @@ const SecondEducation = () => {
       </div>
       <div className="edu-degree">
         <span>
-          <span style={{ color: "#038477" }}>{degree ? degree : "Təhsil"}</span>{" "}
+          <span style={{ color: "#038477" }}>
+            {stateNew.degree ? stateNew.degree : "Təhsil"}
+          </span>{" "}
           pilləsi barədə məlumatları qeyd edin
         </span>
         <div className="selections">
           <Select
+            {...register("country")}
             styles={customStyles}
             options={countries}
             placeholder="Ölkə"
             className="country"
             name="country"
-            defaultValue={state.country}
+            value={
+              stateNew.country
+                ? {
+                    label: stateNew.country,
+                    value: stateNew.country,
+                  }
+                : null
+            }
             onChange={(selectedOption) =>
-              handleSelectChange("country", selectedOption)
+              handleNewSelectChange("country", selectedOption)
             }
           />
-          {state.country && (
+          {stateNew.country && (
             <Select
+              {...register("city")}
               styles={customStyles}
               options={cities}
               placeholder="Şəhər"
               className="city"
               name="city"
-              defaultValue={state.city}
-              // value={state.city}
+              value={
+                stateNew.city
+                  ? {
+                      label: stateNew.city,
+                      value: stateNew.city,
+                    }
+                  : null
+              }
               onChange={(selectedOption) =>
-                handleSelectChange("city", selectedOption)
+                handleNewSelectChange("city", selectedOption)
               }
             />
           )}
@@ -104,8 +102,8 @@ const SecondEducation = () => {
           type="text"
           placeholder="Universitetin adı"
           name="universityName"
-          value={state.universityName}
-          onChange={handleInputChange}
+          value={stateNew.universityName}
+          onChange={handleNewInputChange}
         />
       </div>
       <div className="speciality">
@@ -114,8 +112,8 @@ const SecondEducation = () => {
           type="text"
           placeholder="İxtisas adı"
           name="speciality"
-          value={state.speciality}
-          onChange={handleInputChange}
+          value={stateNew.speciality}
+          onChange={handleNewInputChange}
         />
       </div>
       <div className="dates">
@@ -124,15 +122,15 @@ const SecondEducation = () => {
           <input
             type="date"
             name="startDate"
-            value={state.startDate}
-            onChange={handleInputChange}
+            value={stateNew.startDate}
+            onChange={handleNewInputChange}
           />
           <input
             type="date"
             name="endDate"
-            value={state.currentTuition ? "current" : state.endDate}
-            onChange={handleInputChange}
-            disabled={state.currentTuition}
+            value={stateNew.currentTuition ? "current" : stateNew.endDate}
+            onChange={handleNewInputChange}
+            disabled={stateNew.currentTuition}
           />
         </div>
         <div className="line-current">
@@ -141,8 +139,8 @@ const SecondEducation = () => {
             type="checkbox"
             id="current"
             name="currentTuition"
-            checked={state.currentTuition}
-            onChange={handleInputChange}
+            checked={stateNew.currentTuition}
+            onChange={handleNewInputChange}
           />
         </div>
       </div>
@@ -156,8 +154,8 @@ const SecondEducation = () => {
               id="local"
               name="accepting"
               value="local"
-              checked={state.acceptingOption === "local"}
-              onChange={handleAcceptingOptionChange}
+              checked={stateNew.acceptingOption === "local"}
+              onChange={handleNewAcceptingOptionChange}
             />
           </div>
           <div>
@@ -167,8 +165,8 @@ const SecondEducation = () => {
               id="appeal"
               name="accepting"
               value="appeal"
-              checked={state.acceptingOption === "appeal"}
-              onChange={handleAcceptingOptionChange}
+              checked={stateNew.acceptingOption === "appeal"}
+              onChange={handleNewAcceptingOptionChange}
             />
           </div>
           <div>
@@ -178,15 +176,15 @@ const SecondEducation = () => {
               id="both"
               name="accepting"
               value="both"
-              checked={state.acceptingOption === "both"}
-              onChange={handleAcceptingOptionChange}
+              checked={stateNew.acceptingOption === "both"}
+              onChange={handleNewAcceptingOptionChange}
             />
           </div>
         </div>
       </div>
-      {state.acceptingOption === "local" && <LocalExam />}
-      {state.acceptingOption === "appeal" && <Appealing />}
-      {state.acceptingOption === "both" && (
+      {stateNew.acceptingOption === "local" && <LocalExam />}
+      {stateNew.acceptingOption === "appeal" && <Appealing />}
+      {stateNew.acceptingOption === "both" && (
         <>
           <LocalExam />
           <Appealing />
